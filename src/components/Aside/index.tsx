@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { useContent } from "../../context/Content/ContentProvider";
 import { HearthIcon } from "../icons/HearthIcon";
 import { HomeIcon } from "../icons/HomeIcon";
 import { LibraryIcon } from "../icons/LibraryIcon";
@@ -17,6 +18,8 @@ import {
 } from "./styles";
 
 export const Aside: React.FC = () => {
+  const { playlists } = useContent()!;
+
   return (
     <Container>
       <ImageWrapper>
@@ -38,7 +41,7 @@ export const Aside: React.FC = () => {
             </Link>
           </Item>
           <Item>
-            <Link href="/" passHref>
+            <Link href="/search" passHref>
               <StyledLink theme={{ isActivate: true }}>
                 <SearchIcon />
                 <span>Buscar</span>
@@ -84,55 +87,16 @@ export const Aside: React.FC = () => {
       </ListItems>
       <Scrollable>
         <ListItems>
-          <Item>
-            <Link href="/" passHref>
-              <StyledLink theme={{ isActivate: true, fontWeight: "400" }}>
-                <span>Minha Playlist</span>
-              </StyledLink>
-            </Link>
-          </Item>
-          <Item>
-            <Link href="/" passHref>
-              <StyledLink theme={{ isActivate: true, fontWeight: "400" }}>
-                <span>Indie Stage</span>
-              </StyledLink>
-            </Link>
-          </Item>
-          <Item>
-            <Link href="/" passHref>
-              <StyledLink theme={{ isActivate: true, fontWeight: "400" }}>
-                <span>Hooked on a Feeling</span>
-              </StyledLink>
-            </Link>
-          </Item>
-          <Item>
-            <Link href="/" passHref>
-              <StyledLink theme={{ isActivate: true, fontWeight: "400" }}>
-                <span>Projeto Sola - Discografia</span>
-              </StyledLink>
-            </Link>
-          </Item>
-          <Item>
-            <Link href="/" passHref>
-              <StyledLink theme={{ isActivate: true, fontWeight: "400" }}>
-                <span>Lofi Fuits Music</span>
-              </StyledLink>
-            </Link>
-          </Item>
-          <Item>
-            <Link href="/" passHref>
-              <StyledLink theme={{ isActivate: true, fontWeight: "400" }}>
-                <span>Brasil anos 90</span>
-              </StyledLink>
-            </Link>
-          </Item>
-          <Item>
-            <Link href="/" passHref>
-              <StyledLink theme={{ isActivate: true, fontWeight: "400" }}>
-                <span>This is Tom Jobim</span>
-              </StyledLink>
-            </Link>
-          </Item>
+          {playlists &&
+            playlists.map((playlist) => (
+              <Item key={playlist.id}>
+                <Link href={`/playlist/${playlist.id}`} passHref>
+                  <StyledLink theme={{ isActivate: true, fontWeight: "400" }}>
+                    <p>{playlist.name}</p>
+                  </StyledLink>
+                </Link>
+              </Item>
+            ))}
         </ListItems>
       </Scrollable>
     </Container>

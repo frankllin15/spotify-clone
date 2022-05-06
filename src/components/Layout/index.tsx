@@ -1,6 +1,8 @@
 import { Aside } from "../Aside";
+import { Header } from "../Header";
 import { PlayerBar } from "../PlayerBar";
-import { Container } from "./styles";
+import { Container, Main } from "./styles";
+import {} from "./styles";
 
 type Props = {
   children: React.ReactNode;
@@ -10,7 +12,7 @@ export const Layout: React.FC<Props> = ({ children }) => {
   return (
     <Container>
       <Aside />
-      <main>{children}</main>
+      <Main>{children}</Main>
       <PlayerBar />
     </Container>
   );

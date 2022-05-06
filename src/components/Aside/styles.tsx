@@ -27,19 +27,19 @@ export const StyledLink = styled.a`
   align-items: center;
   font-weight: ${({ theme }) => (theme.fontWeight ? theme.fontWeight : "700")};
   font-size: ${({ theme }) => (theme.fontSize ? theme.fontSize : ".875rem")};
-  
-  transition: 0.3s ease-in-out;
+
+  transition: 0.1s ease-in-out;
   fill: ${(props) =>
-    props.theme.isActive ? "var(--white)" : "var(--gray-light)"}};
-    
+    props.theme.isActive ? "var(--white)" : "var(--gray-light)"};
+
   color: ${(props) =>
-    props.theme.isActive ? "var(--white)" : "var(--gray-light)"};}
-    
+    props.theme.isActive ? "var(--white)" : "var(--gray-light)"};
+
   :hover {
     fill: var(--white);
     color: var(--white);
-    
-     div {
+
+    div {
       background-color: var(--white);
     }
   }
@@ -65,6 +65,11 @@ export const IconBox = styled.div`
 export const Scrollable = styled.div`
   overflow-y: scroll;
   height: 100%;
+  p {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
 `;
 
 export const HorizontalLine = styled.hr`

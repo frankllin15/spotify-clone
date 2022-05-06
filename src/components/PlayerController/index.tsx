@@ -39,7 +39,6 @@ export const PlayerController = () => {
         break;
     }
   };
-  console.log(state);
   return (
     <Container>
       <Wrapper style={{ gap: "24px" }}>

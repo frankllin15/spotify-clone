@@ -56,3 +56,34 @@ export const Progress = styled.div<ProgressBarProps>`
   top: 0;
   left: 0;
 `;
+
+export const PlayButton = styled.button`
+  width: ${({ theme }) => theme.size}px;
+  height: ${({ theme }) => theme.size}px;
+  border-radius: 50%;
+  background-color: ${({ theme }) => theme.fill};
+  border: none;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  svg {
+    width: ${({ theme }) => theme.icon.size || 16}px;
+    height: ${({ theme }) => theme.icon.size || 16}px;
+    fill: ${({ theme }) => theme.icon.fill || "var(--white)"};
+    color: ${({ theme }) => theme.icon.fill || "var(--white)"};
+  }
+  :hover {
+    transform: scale(1.05);
+  }
+`;
+
+export const SubTitle = styled.h2`
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--white);
+  margin-bottom: 1rem;
+`;
+
+export const ContainerPadding = styled.div`
+  padding: 0 2rem;
+`;
