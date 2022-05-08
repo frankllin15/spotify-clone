@@ -44,7 +44,6 @@ function SearchPage({ categories }: Props) {
   const [results, setResults] = useState<SpotifyApi.SearchResponse | null>(
     null
   );
-  console.log("categorys", categories);
 
   const token = getCookie("access_token") as string;
 

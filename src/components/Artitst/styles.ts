@@ -56,6 +56,7 @@ export const ContainerRow = styled.div`
 
 export const ImageWrapper = styled.div`
   width: 40px;
+  min-width: 40px;
   height: 40px;
   position: relative;
 `;

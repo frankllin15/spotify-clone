@@ -1,3 +1,4 @@
+import Head from "next/head";
 import Image from "next/image";
 import React, { ReactNode, useEffect, useState } from "react";
 import { Playlist } from "../../types";
@@ -7,6 +8,7 @@ import { HearthFillIcon } from "../icons/HearthFill";
 import { HearthIcon } from "../icons/HearthIcon";
 import { OptionsIcon } from "../icons/OptionsIcon";
 import { PlayIcon } from "../icons/PlayIcon";
+import { TimerIcon } from "../icons/TimerIcon";
 import { GridHeader } from "./GridHeader";
 import {
   Container,
@@ -20,6 +22,7 @@ import {
   PlaylistInfo,
   RowContainer,
   StylelessButton,
+  TrackImageWrapper,
   TrackList,
 } from "./styles";
 
@@ -28,11 +31,11 @@ type Props = {
 };
 
 export const PlaylistComponent: React.FC<Props> = ({ playlist }) => {
-  // const totalDuration = playlist.tracks.items.reduce((acc, curr) => {
-  //   const duration = curr.track.duration_ms;
+  const totalDuration = playlist.tracks.items.reduce((acc, curr) => {
+    const duration = curr.track.duration_ms;
 
-  //   return acc + duration;
-  // }, 0);
+    return acc + duration;
+  }, 0);
 
   return (
     <>
@@ -58,7 +61,7 @@ export const PlaylistComponent: React.FC<Props> = ({ playlist }) => {
             <span>
               {playlist.owner.display_name} • {playlist.followers.total} •{" "}
               {playlist.tracks.total} músicas,{" "}
-              {/* <time>{convertMsToHM(totalDuration)}</time> */}
+              <time>{convertMsToHM(totalDuration)}</time>
             </span>
           </div>
         </PlaylistInfo>
@@ -84,7 +87,9 @@ export const PlaylistComponent: React.FC<Props> = ({ playlist }) => {
             <GridIndex>#</GridIndex>
             <GridTitle>Título</GridTitle>
             <GridAlbum>Album</GridAlbum>
-            <GridInfo>O</GridInfo>
+            <GridInfo>
+              <TimerIcon />
+            </GridInfo>
           </GridHeader>
           {playlist.tracks.items.map(
             (item, index) =>
@@ -95,15 +100,25 @@ export const PlaylistComponent: React.FC<Props> = ({ playlist }) => {
                     <PlayIcon />
                   </GridIndex>
                   <GridTitle>
-                    <p>{item.track.name}</p>
-                    <p>
-                      {item.track.artists
-                        .reduce((acum, curr) => {
-                          acum.push(curr.name);
-                          return acum;
-                        }, [] as string[])
-                        .join(",")}
-                    </p>
+                    <TrackImageWrapper>
+                      <Image
+                        src={item.track.album.images[0].url}
+                        layout="fill"
+                        alt={item.track.name}
+                      />
+                    </TrackImageWrapper>
+                    <div>
+                      <h3>{item.track.name}</h3>
+
+                      <p>
+                        {item.track.artists
+                          .reduce((acum, curr) => {
+                            acum.push(curr.name);
+                            return acum;
+                          }, [] as string[])
+                          .join(", ")}
+                      </p>
+                    </div>
                   </GridTitle>
                   <GridAlbum>
                     <p>{item.track.album.name}</p>

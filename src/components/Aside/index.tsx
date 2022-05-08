@@ -1,11 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { useContent } from "../../context/Content/ContentProvider";
 import { HearthIcon } from "../icons/HearthIcon";
-import { HomeIcon } from "../icons/HomeIcon";
-import { LibraryIcon } from "../icons/LibraryIcon";
+import { HomeFillIcon, HomeIcon } from "../icons/HomeIcon";
+import { LibraryFillIcon, LibraryIcon } from "../icons/LibraryIcon";
 import { PlusIcon } from "../icons/PlusIcon";
-import { SearchIcon } from "../icons/SearchIcon";
+import { SearchFillIcon, SearchIcon } from "../icons/SearchIcon";
 import {
   Container,
   HorizontalLine,
@@ -19,7 +20,10 @@ import {
 
 export const Aside: React.FC = () => {
   const { playlists } = useContent()!;
+  const router = useRouter();
+  const { pathname } = router;
 
+  console.log(router.pathname);
   return (
     <Container>
       <ImageWrapper>
@@ -34,24 +38,33 @@ export const Aside: React.FC = () => {
         <ListItems>
           <Item>
             <Link href="/" passHref>
-              <StyledLink theme={{ isActive: true }}>
-                <HomeIcon />
+              <StyledLink theme={{ isActive: pathname === "/" }}>
+                {pathname === "/" ? (
+                  <HomeFillIcon />
+                ) : (
+                  <HomeIcon fill="var(--gray-light)" />
+                )}
                 <span>Inicio</span>
               </StyledLink>
             </Link>
           </Item>
           <Item>
             <Link href="/search" passHref>
-              <StyledLink theme={{ isActivate: true }}>
-                <SearchIcon />
+              <StyledLink theme={{ isActive: pathname === "/search" }}>
+                {pathname === "/search" ? <SearchFillIcon /> : <SearchIcon />}
                 <span>Buscar</span>
               </StyledLink>
             </Link>
           </Item>
           <Item>
-            <Link href="/" passHref>
-              <StyledLink theme={{ isActivate: true }}>
-                <LibraryIcon />
+            <Link href="/collections" passHref>
+              <StyledLink theme={{ isActive: pathname === "/collections" }}>
+                {pathname === "/collections" ? (
+                  <LibraryFillIcon fill="#fff" />
+                ) : (
+                  <LibraryIcon />
+                )}
+
                 <span>Sua biblioteca</span>
               </StyledLink>
             </Link>
@@ -61,7 +74,7 @@ export const Aside: React.FC = () => {
       <ListItems>
         <Item>
           <Link href="/" passHref>
-            <StyledLink theme={{ isActivate: true }}>
+            <StyledLink theme={{ isActive: true }}>
               <IconBox>
                 <PlusIcon />
               </IconBox>

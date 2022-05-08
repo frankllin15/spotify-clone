@@ -241,3 +241,18 @@ export async function getCategories(token: string) {
     return [];
   }
 }
+
+export const getAlbum = async (token: string, albumId: string) => {
+  try {
+    const album = await client.get(`/albums/${albumId}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    return album.data;
+  } catch (error: any) {
+    console.log(error.message);
+    return null;
+  }
+};

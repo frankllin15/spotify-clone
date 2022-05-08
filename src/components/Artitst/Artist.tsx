@@ -34,6 +34,7 @@ export const ArtistComponent: React.FC<Props> = ({
   topTracks,
   albums,
 }) => {
+  console.log("traks", topTracks);
   return (
     <Container>
       <ArtistInfo theme={{ backgroundImage: artist.images[0].url }}>
@@ -76,9 +77,9 @@ export const ArtistComponent: React.FC<Props> = ({
                     layout="fill"
                   />
                 </ImageWrapper>
-                {track.name}
+                <h3>{track.name}</h3>
               </GridTitle>
-              <GridAlbum>{track.track_number}</GridAlbum>
+              {/* <GridAlbum>{track.track_number}</GridAlbum> */}
               <GridInfo>
                 <StylelessButton>
                   <HearthIcon />

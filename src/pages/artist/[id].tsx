@@ -1,5 +1,6 @@
 import { getCookie } from "cookies-next";
 import { GetServerSideProps, NextPage } from "next";
+import Head from "next/head";
 import { ArtistComponent } from "../../components/Artitst";
 import { getArtist, getArtistAlbums, getArtistTopTracks } from "../../lib/api";
 import { Artist, Track } from "../../types";
@@ -53,6 +54,9 @@ type Props = {
 const ArtistPage: NextPage<Props> = ({ artist, topTracks, albums }) => {
   return (
     <div>
+      <Head>
+        <title>Spotify {artist && ` - ${artist.name}`}</title>
+      </Head>
       {artist ? (
         <ArtistComponent
           albums={albums}

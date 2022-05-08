@@ -17,7 +17,7 @@ export const Container = styled.div`
   );
 `;
 
-export const PlaylistInfo = styled.div`
+export const AlbumInfo = styled.div`
   padding: 0 2rem 24px 2rem;
   height: 278px;
   display: flex;
@@ -31,7 +31,8 @@ export const PlaylistInfo = styled.div`
     color: #fff;
     margin-bottom: 0.8rem;
   }
-  span {
+  span,
+  a {
     font-size: 0.875rem;
     font-weight: 500;
     color: #fff;
@@ -52,7 +53,7 @@ export const ImageWrapper = styled.div`
   min-width: 192px;
 `;
 
-export const RowContainer = styled.div`
+export const ContainerRow = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -91,25 +92,13 @@ export const IconWrapper = styled.div`
   }
 `;
 
-export const TrackImageWrapper = styled.div`
-  position: relative;
-  width: 40px;
-  height: 40px;
-  min-width: 40px;
+export const TrackList = styled.div`
+  padding: 0 2rem;
+  width: 100%;
+
+  /* background: rgba(0, 0, 0, 0.3); */
 `;
 
-export const GridAlbum = styled.div`
-  grid-area: album;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  p {
-    color: var(--gray-light);
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-`;
 export const GridIndex = styled.div`
   grid-area: index;
   display: flex;
@@ -126,11 +115,12 @@ export const GridIndex = styled.div`
     color: var(--gray-light);
   }
 `;
+
 export const GridTitle = styled.div`
   grid-area: title;
   display: flex;
   align-items: center;
-  flex-direction: row;
+  flex-direction: colum;
   justify-content: flex-start;
   gap: 1rem;
 
@@ -183,7 +173,7 @@ export const GridRow = styled.div`
   display: grid;
   width: 100%;
   height: 56px;
-  grid-template-columns: 1rem minmax(197px, 2fr) 110px;
+  grid-template-columns: 1rem minmax(197px, 2fr) minmax(97px, 1fr) 110px;
   cursor: default;
   grid-template-areas: "index title album info";
   gap: 2rem;
@@ -208,45 +198,4 @@ export const GridRow = styled.div`
       }
     }
   }
-  @media (max-width: 820px) {
-    grid-template-columns: 1rem minmax(197px, 1fr) 110px;
-    grid-template-areas: "index title info";
-    ${GridAlbum} {
-      display: none;
-    }
-  }
-`;
-
-export const TrackList = styled.div`
-  padding: 0 2rem;
-  max-width: 100%;
-
-  /* background: rgba(0, 0, 0, 0.3); */
-`;
-
-export const Separator = styled.hr`
-  width: 100%;
-  border: none;
-  height: 1px;
-  background: rgba(255, 255, 255, 0.3);
-  margin: 1rem 0;
-`;
-
-export const StylelessButton = styled.button`
-  background: none;
-  border: none;
-  cursor: pointer;
-`;
-
-export const BackgroundDegrade = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 340px;
-  background: linear-gradient(
-    180deg,
-    rgba(0, 0, 0, 0.5) 0%,
-    var(--black-base) 100%
-  );
 `;
