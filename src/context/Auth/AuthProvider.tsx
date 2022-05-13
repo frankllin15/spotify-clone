@@ -12,6 +12,7 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const access_token = getCookie("access_token") as string;
   const refresh_token = getCookie("refresh_token") as string;
   const user_cookie = getCookie("user") as string;
+  const token_expires_in = getCookie("token_expires_in") as string;
 
   const router = useRouter();
   useEffect(() => {
@@ -20,12 +21,15 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
       setUser(JSON.parse(user_cookie));
     }
   }, [access_token]);
-
+  console.log("expires_in", token_expires_in);
   useEffect(() => {
-    if (!access_token) {
+    const now = new Date().getTime();
+    const expiresDate = Number(token_expires_in) || now - 1;
+
+    if (!access_token || now > expiresDate) {
       router.replace("/api/login");
     }
-  }, [access_token]);
+  }, [access_token, token_expires_in]);
 
   return (
     <AuthContext.Provider value={{ user, session, setSession, setUser }}>

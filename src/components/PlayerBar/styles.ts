@@ -1,8 +1,9 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
+  grid-area: playerbar;
   display: grid;
-  grid-template-columns: 1fr minmax(380px, 533px) 1fr;
+  grid-template-columns: 1fr minmax(320px, 533px) 1fr;
   grid-column: 1 / span 2;
   width: 100%;
   height: 100%;

@@ -6,12 +6,13 @@ const GlobalStyle = createGlobalStyle`
     --white: #FFF;
     --white-light: #F1F1F1;
     --transparent: rgba(255, 255, 255, 0.1);
-    --gray:#333;
+    --gray:#2D2E30;
     --gray-light: #B3B3B3;
     --gray-dark: #121212;
     --black: #000;
     --black-base: #121212;
     --black-light: #1B1B1B;
+    
     /* --scrollbar-vertical-size: 16px;
     --scrollbar-horizontal-size: 16px; */
   }

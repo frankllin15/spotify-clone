@@ -32,8 +32,8 @@ export const MediaCard: React.FC<Props> = (item) => {
               (item.images[0] && item.images[0].url) ||
               "/images/placeholder.webp"
             }
-            width={(item.images[0] && item.images[0].width) || 200}
-            height={(item.images[0] && item.images[0].height) || 200}
+            width={200}
+            height={200}
             alt="Album"
           />
           <FloatingButton>
@@ -83,7 +83,7 @@ export const MediaCardGroup: React.FC<{
       <ContainerRow>
         {items.map(
           (item, index) =>
-            index < (isMobile ? 2 : isTablet ? 2 : 4) && (
+            index < (isMobile ? 10 : isTablet ? 3 : 4) && (
               <MediaCard
                 name={item.name}
                 images={item.images}

@@ -6,6 +6,10 @@ type WidgetUserProps = {
 
 export const Container = styled.div`
   padding: 6rem 2rem;
+
+  @media ${({ theme }) => theme.breakpoints.mobile} {
+    padding: 2rem 0.5rem;
+  }
 `;
 
 export const WidgetUser = styled.button<WidgetUserProps>`

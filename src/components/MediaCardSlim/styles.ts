@@ -61,6 +61,6 @@ export const MediaCardSlimGroup = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   grid-gap: 0.75rem 1.5rem;
-  overflow-y: hidden;
+  overflow: hidden;
   margin: 18px 0 40px;
 `;

@@ -36,6 +36,7 @@ export const CallbackRoute = async (
       })
     ).json();
 
+    // expires_in is in seconds
     const { access_token, refresh_token, expires_in } = await json;
 
     const user = await fetch("https://api.spotify.com/v1/me", {
@@ -43,16 +44,22 @@ export const CallbackRoute = async (
         Authorization: `Bearer ${access_token}`,
       },
     });
+    console.log("expires_in", expires_in);
     setCookies("access_token", access_token || "", {
       res,
       req,
       maxAge: expires_in,
     });
-    setCookies("refresh_token", refresh_token || "", {
-      res,
-      req,
-      maxAge: expires_in,
-    });
+    // convert milliseconds to seconds and add to current time
+    setCookies(
+      "token_expires_in",
+      new Date(Date.now() + expires_in * 1000).getTime() || "",
+      {
+        res,
+        req,
+        maxAge: expires_in,
+      }
+    );
     setCookies("user", JSON.stringify(await user.json()), {
       res,
       req,

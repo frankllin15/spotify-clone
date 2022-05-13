@@ -27,25 +27,27 @@ export const Home: React.FC<Props> = ({
   featuredPlaylists,
 }) => {
   const isMobile = useMediaQuery("(max-width: 768px)");
-  const isTablet = useMediaQuery("(min-width: 768px) and (max-width: 1024px)");
+  const isTablet = useMediaQuery("(min-width: 768px) and (max-width: 997px)");
   const { user } = useAuth()!;
   return (
     <Fragment>
       {/* <Main> */}
-      <Header>
-        <Button hidden={isTablet || isMobile}>Faça Upgrade</Button>
-        <WidgetUser closed={isMobile}>
-          <WidgetUserAvatar>
-            <Image
-              layout="fill"
-              src={user?.images[0].url || "/images/avatar.webp"}
-              alt={user?.display_name}
-            />
-          </WidgetUserAvatar>
-          <span>{user?.display_name}</span>
-          <DownIcon />
-        </WidgetUser>
-      </Header>
+      {!isTablet && !isMobile && (
+        <Header>
+          <Button hidden={isTablet || isMobile}>Faça Upgrade</Button>
+          <WidgetUser closed={isMobile}>
+            <WidgetUserAvatar>
+              <Image
+                layout="fill"
+                src={user?.images[0].url || "/images/avatar.webp"}
+                alt={user?.display_name}
+              />
+            </WidgetUserAvatar>
+            <span>{user?.display_name}</span>
+            <DownIcon />
+          </WidgetUser>
+        </Header>
+      )}
 
       <Container>
         <Head>

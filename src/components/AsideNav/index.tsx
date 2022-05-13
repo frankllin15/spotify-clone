@@ -18,7 +18,7 @@ import {
   StyledLink,
 } from "./styles";
 
-export const Aside: React.FC = () => {
+export const AsideNav: React.FC = () => {
   const { playlists } = useContent()!;
   const router = useRouter();
   const { pathname } = router;

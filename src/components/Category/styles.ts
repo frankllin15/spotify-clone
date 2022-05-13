@@ -14,6 +14,8 @@ export const CategoryCardContent = styled.div`
     color: #fff;
   }
   background: url(${({ theme }) => theme.backgroundImage});
+  background-position: right center;
+  background-size: cover;
   border-radius: 5px;
 `;
 

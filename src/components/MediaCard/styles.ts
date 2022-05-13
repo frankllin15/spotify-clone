@@ -3,7 +3,7 @@ import styled, { css } from "styled-components";
 export const Container = styled.a`
   display: flex;
   max-width: 240px;
-  min-width: 155px;
+  min-width: 125px;
   flex: 1;
   flex-direction: column;
   align-items: center;
@@ -32,6 +32,9 @@ export const ContainerRow = styled.div`
   flex-direction: row;
   gap: 1rem;
   overflow-y: hidden;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 export const InfoWrapper = styled.div`

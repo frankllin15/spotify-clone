@@ -1,6 +1,9 @@
-import { Aside } from "../Aside";
+import useMediaQuery from "../../hooks/MediaQueryHook";
+import { AsideNav } from "../AsideNav";
+import { FooterNavMobile } from "../FooterNavMobile";
 import { Header } from "../Header";
 import { PlayerBar } from "../PlayerBar";
+import { PlayerBarMobile } from "../PlayerBarMobile";
 import { Container, Main } from "./styles";
 import {} from "./styles";
 
@@ -9,11 +12,22 @@ type Props = {
 };
 
 export const Layout: React.FC<Props> = ({ children }) => {
+  const isTablet = useMediaQuery("(max-width: 997px)");
+
   return (
     <Container>
-      <Aside />
       <Main>{children}</Main>
-      <PlayerBar />
+      {isTablet ? (
+        <>
+          <PlayerBarMobile />
+          <FooterNavMobile />
+        </>
+      ) : (
+        <>
+          <AsideNav />
+          <PlayerBar />
+        </>
+      )}
     </Container>
   );
 };
