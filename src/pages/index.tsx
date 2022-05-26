@@ -18,6 +18,15 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
     res,
   }) as string;
 
+  if (!token) {
+    return {
+      props: {},
+      redirect: {
+        destination: "/api/login",
+      },
+    };
+  }
+
   const userTopArtists =
     await getUserTopItems<SpotifyApi.UsersTopArtistsResponse>(
       token,

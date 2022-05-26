@@ -27,7 +27,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
 
   return {
     props: {
-      categories: categories.items,
+      categories: categories.items || null,
     },
   };
 };
@@ -78,7 +78,7 @@ function SearchPage({ categories }: Props) {
           <WidgetUserAvatar>
             <Image
               layout="fill"
-              src={user?.images[0].url || "/images/avatar.webp"}
+              src={(user?.images || [])[0]?.url || "/images/avatar.webp"}
               alt={user?.display_name}
             />
           </WidgetUserAvatar>
@@ -97,7 +97,7 @@ function SearchPage({ categories }: Props) {
           momorizedSearchComponent
         ) : (
           <CategoryCardGroup>
-            {categories.map((categorie) => (
+            {categories?.map((categorie) => (
               <CategoryCard key={categorie.id} item={categorie} />
             ))}
           </CategoryCardGroup>

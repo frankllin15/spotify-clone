@@ -68,7 +68,9 @@ export const CallbackRoute = async (
 
     res.redirect(`${process.env.CLIENT_REDIRECTURI}`);
   } catch (e: any) {
-    res.status(500).json({ error: e.message });
+    const params = new URLSearchParams(e);
+    res.redirect(`/error?${params}`);
+    res.status(500).json(e);
   }
 };
 

@@ -39,7 +39,7 @@ export const Home: React.FC<Props> = ({
             <WidgetUserAvatar>
               <Image
                 layout="fill"
-                src={user?.images[0].url || "/images/avatar.webp"}
+                src={(user?.images || [])[0]?.url || "/images/avatar.webp"}
                 alt={user?.display_name}
               />
             </WidgetUserAvatar>
